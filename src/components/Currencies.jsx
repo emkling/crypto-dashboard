@@ -29,7 +29,7 @@ const Currencies = ({simplified}) => {
     <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-10 p-4 w-full'>
       {cryptos?.map((currency) => (
         <div className=' sm:p-4 border-2 rounded-md shadow-md'>
-          <Link key={currency.key} to={`/crypto/${currency.name}` }>
+          <Link key={currency.key} to={`/crypto/${currency.uuid}` }>
             <div className='p-4'> 
             <div className='flex flex-row'>
               <h1 className=' w-full pb-3 font-bold flex'>{currency.rank}. {currency.name} </h1>
