@@ -5,7 +5,7 @@ import {Home,Exchanges, Currencies, Navbar, News} from './components'
 
 const App = () => {
   return (
-    <div className='w-full h-screen'>
+    <div className='w-full bg-[#dcdcdc]'>
 
         <Navbar />
         <div>

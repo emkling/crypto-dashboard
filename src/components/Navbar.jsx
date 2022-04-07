@@ -8,11 +8,11 @@ const Navbar = () => {
         
         <div className='flex relative justify-center items-center gap-32 w-full'>
             
-            <Link to="/" className='text-[#D8A31A]'> Home</Link>
-            <Link to="/news" className='text-[#D8A31A]'> News</Link>
-            <img src={logo}  alt='logo' style={{width:'120px'}} />
-            <Link to="/currencies" className='text-[#D8A31A]'> Currencies</Link>
-            <Link to="/exchanges" className='text-[#D8A31A]'> Exchanges</Link>
+            <Link to="/" className='text-[#D8A31A] text-2xl'> Home</Link>
+            <Link to="/news" className='text-[#D8A31A] text-2xl'> News</Link>
+            <img src={logo}  alt='logo' style={{width:'130px'}} />
+            <Link to="/currencies" className='text-[#D8A31A] text-2xl'> Currencies</Link>
+            <Link to="/exchanges" className='text-[#D8A31A] text-2xl'> Exchanges</Link>
         </div>
 
     </div>
