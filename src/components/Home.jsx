@@ -2,9 +2,10 @@ import React from 'react'
 import { useGetCryptosQuery } from '../services/cryptoApi'
 import millify from 'millify'
 import {Currencies, News} from '../components'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
-  const {data, isFetching} = useGetCryptosQuery();
+  const {data, isFetching} = useGetCryptosQuery(10);
   const globalStats = data?.data?.stats;
   console.log(data)
 
@@ -20,11 +21,11 @@ const Home = () => {
         <p> 24hr Volume:  {millify(globalStats.total24hVolume)} </p>
         <p> Market:  {millify(globalStats.totalMarkets)} </p>
       </div>
-      <div>
-        <h1 className='font-bold text-4xl'>Top Cryptocurrencies</h1>
+      <div className='flex justify-evenly w-full'>
+        <h1 className='font-bold text-4xl'>Top Currencies</h1>
+        <Link className='inline-flex items-center top-1/2' to='/currencies'> Show More</Link>
       </div>
-      <Currencies simplified/> 
-
+      <Currencies simplified={true}/> 
       <div>
         <h1>Top News Stories</h1>
       </div>

@@ -22,8 +22,8 @@ const App = () => {
                   <News />
                 </Route>
 
-                <Route exact path="/cryptocurrencies">
-                  <Currencies />
+                <Route exact path="/currencies">
+                  <Currencies/>
                 </Route>
           </Switch>
         </div>
