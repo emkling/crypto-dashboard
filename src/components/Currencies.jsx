@@ -10,8 +10,6 @@ const Currencies = ({simplified}) => {
   const [cryptos, setCryptos] = useState(cryptosList?.data?.coins);
   const [searchTerm, setSearchTerm] = useState('')
 
- 
-
   useEffect(() => {
     const filteredData = cryptosList?.data?.coins.filter((coin) => coin.name.toLowerCase().includes(searchTerm.toLocaleLowerCase()));
     setCryptos(filteredData)
@@ -28,7 +26,7 @@ const Currencies = ({simplified}) => {
     )}
     <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-10 p-4 w-full'>
       {cryptos?.map((currency) => (
-        <div className=' sm:p-4 border-2 rounded-md shadow-md'>
+        <div className=' sm:p-4 border-2 rounded-md shadow-md bg-[#FFFFFF]'>
           <Link key={currency.key} to={`/crypto/${currency.uuid}` }>
             <div className='p-4'> 
             <div className='flex flex-row'>
