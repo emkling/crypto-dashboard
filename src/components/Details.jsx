@@ -2,17 +2,18 @@ import React from 'react'
 import { useState } from 'react'
 import {useParams} from 'react-router-dom'
 import millify from 'millify'
-import { useGetCryptoDetailsQuery } from '../services/cryptoApi'
+import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../services/cryptoApi'
 import {useEffect} from 'react'
 import LineChart from './LineChart'
-
+import HTMLReactParser from 'html-react-parser';
 
 
 const Details = () => {
 
     const {coinId} = useParams();
-    const [timePeriod, setTimePeriod] = useState('7d');
+    const [timePeriod, setTimePeriod] = useState('5y');
     const {data, isFetching} = useGetCryptoDetailsQuery(coinId);
+    const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timePeriod });
     const cryptoDetails = data?.data?.coin;
 
 
@@ -45,9 +46,20 @@ const Details = () => {
     
 
   return (
-    <div className='pt-[150px] w-full h-screen'>
+    <div className='pt-[150px] w-full h-screen flex flex-col'>
+       <div className='flex flex-col'>
         <section className='flex justify-center items-center'>
           <h1 className='text-4xl'>{cryptoDetails?.name} ({cryptoDetails?.symbol})</h1>
+        </section> 
+        
+        <section>
+          <select defaultValue={timePeriod} placeholder="Select period" onChange={(value) => setTimePeriod(value)}>
+            {time.map((date) => <option value={date} key={date}> {date} </option>)}
+
+
+          </select>
+        <LineChart coinHistory={coinHistory} currentPrice={millify(cryptoDetails?.price)} coinName={cryptoDetails?.name} />
+          
         </section>
 
         <div className='flex justify-center w-full gap-20'>
@@ -59,9 +71,7 @@ const Details = () => {
           <p>All Time High: {millify(cryptoDetails?.allTimeHigh?.price)}</p>
           <p>Change: {cryptoDetails?.change}</p>
         </section>
-        <section>
-          
-        </section>
+       
 
         <section>
           <p>Number of Markets: {cryptoDetails?.numberOfMarkets}</p>
@@ -70,8 +80,32 @@ const Details = () => {
           <p>Circulating Supply {millify(cryptoDetails?.supply?.circulating)}</p>
           <p>Approved Supply: {cryptoDetails?.supply?.confirmed} </p>
           <p></p> 
-          
+        </section>
+        
+        </div>
+          <div>
+          <section>
+            <h1>What is {cryptoDetails?.name}</h1>
+            <div>
+              {HTMLReactParser(cryptoDetails.description)}
+            </div>
           </section>
+
+          <section>
+            {cryptoDetails?.links?.map((link) => ( 
+
+              <div key={link.name} className="py-4">
+                <h1> {link.type}</h1>
+                <a href={link.url} target="_blank" rel="noreferrer"> {link.name} </a>
+              </div>
+            ))};
+            
+        
+
+
+          </section>
+          
+          </div>
         </div>
     </div>
   )

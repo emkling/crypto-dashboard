@@ -32,9 +32,7 @@ const App = () => {
                </Route>
           </Switch>
         </div>
-        <div className='h-[80px] w-full bottom-0 bg-[#000034] flex justify-center items-center text-[#FFFFFF] bg-gradient-welcome'>
-          <p> All Rights Reserved </p>
-        </div>
+      
 
     </div>
   )

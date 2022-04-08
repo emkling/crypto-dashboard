@@ -18,7 +18,8 @@ const News = ({simplified}) => {
       <select
       className='w-[200px] h-8'
       placeholder='Select Crypto'
-      onChange={(value) => setNewsCategory(value)}
+      onChange={(e) => setNewsCategory(e.target.value)
+      }
       >
         <option value="Cryptocurrency" > Cryptocurrency</option>
         {data?.data?.coins?.map((currency) => <option value={currency.name}>{currency.name} </option>)}
