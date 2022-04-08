@@ -9,16 +9,23 @@ const News = ({simplified}) => {
   const {data: cryptoNews } = useGetCryptoNewsQuery({newsCategory, count : simplified ? 12 : 30 });
   const {data} = useGetCryptosQuery(50);
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   if(!cryptoNews?.value) return "Loading"
+
+  
 
   return (
     <>
     {!simplified && (
-    <div className='pt-[150px] flex justify-center pb-4'>
+    <div className='pt-[80px] sm:pt-[150px] flex justify-center pb-4'>
       <select
-      className='w-[200px] h-8'
+      className='w-[200px] h-8 bg-[#FFFFFF] rounded-lg'
       placeholder='Select Crypto'
       onChange={(e) => setNewsCategory(e.target.value)
+      
       }
       >
         <option value="Cryptocurrency" > Cryptocurrency</option>
@@ -27,7 +34,7 @@ const News = ({simplified}) => {
       </select>
     </div> 
     )}
-    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 p-4 w-full '>
+    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 p-4 w-full '>
       {cryptoNews?.value.map((news, i) => (
         <div className=' sm:p-4 '>
           <a href={news.url} target='_blank' rel='noreferrer'>

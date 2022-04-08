@@ -18,9 +18,6 @@ const len = coinHistory?.data?.history?.length;
     coinTimestamp.push(new Date(coinHistory?.data?.history[i].timestamp*1000).toLocaleDateString());
   }
 
-  for (let i = yLen-1; i > 0; i--) {
-      console.log(new Date(coinHistory?.data?.history[i].timestamp*1000));
-  }
 
 
   const data = {
@@ -50,12 +47,12 @@ const len = coinHistory?.data?.history?.length;
 
   return (
     <>
-      <div className="w-full h-">
-        <div className="">{coinName} Price Chart </div>
-        <div className="">
-          <div className="">Change: {coinHistory?.data?.change}%</div>
-          <div  className="current-price">Current {coinName} Price: $ {currentPrice}</div>
-        </div>
+      <div className="w-full flex flex-col justify-end items-center">
+        <div className="font-bold text-xl">{coinName} Price Chart </div>
+    
+          <div className="">Change: {coinHistory?.data?.change}% <br/> </div>
+          <div  className="">Current {coinName} Price: $ {currentPrice} <br/> </div>
+        
       </div>
       <Line data={data} options={options} />
     </>

@@ -10,6 +10,9 @@ const Currencies = ({simplified}) => {
   const [cryptos, setCryptos] = useState(cryptosList?.data?.coins);
   const [searchTerm, setSearchTerm] = useState('')
 
+
+
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -20,13 +23,10 @@ const Currencies = ({simplified}) => {
 
   }, [cryptosList, searchTerm])
   if(isFetching) return "Loading";
-  console.log(cryptos);
-
-  
 
   return (
     <div className='w-full flex flex-col'>
-    {!simplified && ( <div className='w-[250px] m-auto rounded-lg pt-[140px]'>
+    {!simplified && ( <div className='w-[250px] m-auto rounded-lg pt-[80px ] sm:pt-[140px]'>
         <input className='border-2 rounded-lg' placeholder='Search' onChange={(e) => setSearchTerm(e.target.value)} />
     </div>
     )}

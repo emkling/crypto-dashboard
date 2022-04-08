@@ -1,6 +1,6 @@
 import React from 'react'
-import logo from '../assets/logo.png'
-import {Link}from 'react-router-dom'
+import Crypto from '../assets/Crypto.png';
+import {Link} from 'react-router-dom'
 import {FaBars, FaTimes} from 'react-icons/fa';
 import { useState } from 'react';
 
@@ -10,9 +10,9 @@ const Navbar = () => {
 
 
   return (
-    <div className='fixed w-full h-[80px] sm:h-[110px] flex justify-between items-center bg-[#3c4564]'>
+    <div className='fixed w-full h-[60px] sm:h-[90px] flex justify-between items-center bg-[#3c4564]'>
       <div className='pl-20'>  
-        <img src={logo}  alt='logo' className='w-[100px] sm:w-[130px]'/>
+        <img src={Crypto}  alt='logo' className='w-[130px] sm:w-[155px]'/>
       </div>
           <div className='hidden lg:flex justify-evenly gap-20 pr-12'>
           <Link to="/" className='text-[#FFFF] '> Home</Link>
@@ -24,12 +24,11 @@ const Navbar = () => {
             {!nav ? <FaBars color='#FFFFFF' /> : <FaTimes color='#FFFFFF'/>}
             </div>
 
-            <div className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen bg-[#000034] text-2xl gap-24 flex flex-col items-center justify-center'}>
-          <Link onClick={handleClick} to="/" className='text-[#D8A31A] '> Home</Link>
-          <Link onClick={handleClick} to="/news" className='text-[#D8A31A] '> News</Link>
-          <Link onClick={handleClick} to="/currencies" className='text-[#D8A31A] '>Currencies</Link>
+            <div className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen bg-[#3c4564] text-2xl gap-24 flex flex-col items-center justify-center'}>
+          <Link onClick={handleClick} to="/" className='text-[#FFFF] '> Home</Link>
+          <Link onClick={handleClick} to="/news" className='text-[#FFFF] '> News</Link>
+          <Link onClick={handleClick} to="/currencies" className='text-[#FFFF] '>Currencies</Link>
           </div>
-          
 
 
         </div>

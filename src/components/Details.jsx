@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import {useParams} from 'react-router-dom'
 import millify from 'millify'
-import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../services/cryptoApi'
+import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery, useGetCryptosQuery } from '../services/cryptoApi'
 import {useEffect} from 'react'
 import LineChart from './LineChart'
 import HTMLReactParser from 'html-react-parser';
@@ -11,10 +11,16 @@ import HTMLReactParser from 'html-react-parser';
 const Details = () => {
 
     const {coinId} = useParams();
+    const [coinUUID, setCoinUUID] = useState(coinId)
     const [timePeriod, setTimePeriod] = useState('24h');
-    const {data, isFetching} = useGetCryptoDetailsQuery(coinId);
+    const {data: two, isFetching} = useGetCryptoDetailsQuery(coinUUID);
     const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timePeriod });
-    const cryptoDetails = data?.data?.coin;
+    const {data: coinList, isFetching2} = useGetCryptosQuery(50);
+    const cryptoDetails = two?.data?.coin;
+
+    console.log(cryptoDetails)
+
+    
 
 
     useEffect(() => {
@@ -22,9 +28,11 @@ const Details = () => {
     }, [])
 
     if(isFetching) return "Loading";
+    if(isFetching2) return "Loading";
 
     
-    console.log(data)
+    console.log(cryptoDetails)
+    console.log("testingtwo")
 
     const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
 
@@ -46,24 +54,34 @@ const Details = () => {
     
 
   return (
-    <div className='pt-[150px] w-full h-screen flex flex-col'>
+    <div className='pt-[150px] w-full h-screen flex flex-col '>
        <div className='flex flex-col'>
         <section className='flex justify-center items-center'>
           <h1 className='text-4xl'>{cryptoDetails?.name} ({cryptoDetails?.symbol})</h1>
         </section> 
         
-        <section>
-          <select defaultValue={timePeriod} placeholder="Select period" onChange={(e) => setTimePeriod(e.target.value)}>
+        <section className='p-12 pr-10'>
+        <div className='flex flex-row gap-10'> 
+          <select className='w-[70px]' defaultValue={timePeriod} placeholder="Select period" onChange={(e) => setTimePeriod(e.target.value)}>
             {time.map((date) => <option value={date} key={date}> {date} </option>)}
-
-
           </select>
+
+          <select
+          className='w-[200px] h-8'
+          placeholder='Select Crypto'
+          onChange={(e) => setCoinUUID(e.target.value)}>
+
+          <option value={cryptoDetails?.name} > {cryptoDetails?.name} </option>
+          {coinList?.data?.coins?.map((currency) => <option value={currency.uuid}>{currency.name} </option>)}
+          </select>
+         </div>
         <LineChart coinHistory={coinHistory} currentPrice={millify(cryptoDetails?.price)} coinName={cryptoDetails?.name} />
           
         </section>
 
-        <div className='flex justify-center w-full gap-20'>
-        <section className='flex flex-col'>
+        <div className='flex justify-between w-full gap-20 p-20 border-2 rounded-lg '>
+        <section className='flex flex-col gap-4 ] border-2 rounded-lg p-10'>
+          <h1 className='font-bold text-xl'> </h1>
           <p>Price to USD: {millify(cryptoDetails?.price)}</p> 
           <p>Rank: {cryptoDetails?.rank} </p>
           <p>24h Volume: {cryptoDetails?.volume}</p>
@@ -73,7 +91,7 @@ const Details = () => {
         </section>
        
 
-        <section>
+        <section className=' border-2 rounded-lg p-10'>
           <p>Number of Markets: {cryptoDetails?.numberOfMarkets}</p>
           <p>Number of Exchanges: {cryptoDetails?.numberOfExchanges}</p>
           <p>Total Supply: {cryptoDetails?.supply?.total}</p>
@@ -81,9 +99,9 @@ const Details = () => {
           <p>Approved Supply: {cryptoDetails?.supply?.confirmed} </p>
           <p></p> 
         </section>
-        
         </div>
-          <div>
+        
+          <div className="bg-[#eef0f3]">
           <section>
             <h1>What is {cryptoDetails?.name}</h1>
             <div>
@@ -96,13 +114,12 @@ const Details = () => {
 
               <div key={link.name} className="py-4">
                 <h1> {link.type}</h1>
+                <div>
                 <a href={link.url} target="_blank" rel="noreferrer"> {link.name} </a>
+                
+                </div>
               </div>
             ))};
-            
-        
-
-
           </section>
           
           </div>

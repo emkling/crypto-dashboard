@@ -1,45 +1,76 @@
 import React from 'react'
-import { useGetCryptosQuery } from '../services/cryptoApi'
+import { useGetCryptosQuery, useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../services/cryptoApi'
 import millify from 'millify'
 import {Currencies, News} from '../components'
 import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import LineChart from './LineChart'
+
 
 const Home = () => {
-  const {data, isFetching} = useGetCryptosQuery(10);
+  const[count, setCount] = useState(10)
+  const [coinId, setCoinId] = useState('Qwsogvtv82FCd');
+  const {data, isFetching} = useGetCryptosQuery(count);
   const globalStats = data?.data?.stats;
-  console.log(data)
+  
+  const [timePeriod, setTimePeriod] = useState('3h');
+  const {data: two, isFetching2} = useGetCryptoDetailsQuery(coinId);
+  const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timePeriod });
+  const cryptoDetails = two?.data?.coin;
+
   
 
+  const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
 
-  if(isFetching) return 'Loading...';
-
-
+  if(isFetching || isFetching2) return 'Loading...';
 
   return (
-    <div className='flex pt-[120px] w-full flex-col justify-center items-center'>
-      <div className='flex justify-between w-full pt-10'>
-        <h1 className='font-bold text-2xl sm:text-4xl pl-10 text-[#000034]'>Global Statistics </h1>
-      </div>
-      <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-10 p-4 pb-10 w-full'> 
-        <p className='bg-[#FFFFFF] hover:bg-[#d6d8da] py-4 sm:p-4 border-2 rounded-md shadow-md text-center'> Cryptocurrencies: {globalStats.total} </p>
-        <p className='bg-[#FFFFFF] hover:bg-[#d6d8da] py-4 sm:p-4 border-2 rounded-md shadow-md text-center'> Exchanges: {millify(globalStats.totalExchanges)} </p>
-        <p className='bg-[#FFFFFF] hover:bg-[#d6d8da] py-4 sm:p-4 border-2 rounded-md shadow-md text-center'> Market Cap:  {millify(globalStats.totalMarketCap)} </p>
-        <p className='bg-[#FFFFFF] hover:bg-[#d6d8da] py-4 sm:p-4 border-2 rounded-md shadow-md text-center'> 24hr Volume:  {millify(globalStats.total24hVolume)} </p>
-        <p className='bg-[#FFFFFF] hover:bg-[#d6d8da] py-4 sm:p-4 border-2 rounded-md shadow-md text-center'> Market:  {millify(globalStats.totalMarkets)} </p>
-      </div>
-
+    <div className='flex pt-[90px] w-full flex-col justify-center items-center'>
       <div className='flex justify-between w-full pb-4 pt-10'>
-        <h1 className='font-bold text-2xl sm:text-4xl pl-12  text-[#000034]'> News</h1>
-        <Link className='inline-flex pr-12 items-center ' to='/news'> Show More</Link>
-      </div>
-      <News simplified />
-      <div className='flex justify-between w-full pb-4 pt-10'>
-        <h1 className='font-bold text-2xl sm:text-4xl pl-12 text-[#000034]'>Top Currencies</h1>
+        <h1 className='font-bold text-2xl sm:text-4xl pl-10 text-[#000034]'>Top Currencies</h1>
         <Link className='inline-flex  items-center pr-12 top-1/2' to='/currencies'> Show More</Link>
       </div>
       <Currencies simplified={true}/> 
+      <div className='flex justify-between w-full pb-4 pt-10'>
+        <h1 className='font-bold text-2xl sm:text-4xl pl-10  text-[#000034]'> News</h1>
+        <Link className='inline-flex pr-12 items-center ' to='/news'> Show More</Link>
+      </div>
+      <News simplified />
+      
+      <div className='flex w-full pt-10 '>
+        <h1 className='font-bold text-2xl sm:text-4xl pl-10 text-[#000034]'>Global Statistics </h1>
+      </div>
+      <div className='flex flex-row pl-12 justify-start items-align py-8 gap-20 pb-10 w-full flex-wrap'> 
+      
+        <div className='p-2 sm:p-4 border-2 shadow-lg rounded-lg bg-white'> Cryptocurrencies: {globalStats.total} </div> 
+        <div className='p-2 sm:p-4 border-2 shadow-lg rounded-lg bg-white'> Exchanges: {millify(globalStats.totalExchanges)}  </div>
+        <div className='p-2 sm:p-4 border-2 shadow-lg rounded-lg bg-white'> Market Cap:  {millify(globalStats.totalMarketCap)}  </div>
+        <div className='p-2 sm:p-4 border-2 shadow-lg rounded-lg bg-white'> 24hr Volume:  {millify(globalStats.total24hVolume)}  </div> 
+        <div className='p-2 sm:p-4 border-2 shadow-lg rounded-lg bg-white'> Market:  {millify(globalStats.totalMarkets)} </div>
+       
+      </div>
+          <div className='w-full flex flex-col bg-white p-12 pr-10'>
+            <div className='flex flex-row gap-10'> 
+          <select className='w-[70px]' defaultValue={timePeriod} placeholder="Select period" onChange={(e) => setTimePeriod(e.target.value)}>
+            {time.map((date) => <option value={date} key={date}> {date} </option>)}
+          </select>
 
+          <select
+          className='w-[200px] h-8'
+          placeholder='Select Crypto'
+          onChange={(e) => setCoinId(e.target.value)}>
+
+          <option value="Qwsogvtv82FCd" > Bitcoin</option>
+          {data?.data?.coins?.map((currency) => <option value={currency.uuid}>{currency.name} </option>)}
+          </select>
+          </div>
+          <LineChart coinHistory={coinHistory} currentPrice={millify(cryptoDetails?.price)} coinName={cryptoDetails?.name} />
+        </div>
+
+      
+
+      
+      
       
     </div>
   )
