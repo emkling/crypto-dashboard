@@ -10,20 +10,26 @@ const Navbar = () => {
 
 
   return (
-    <div className='fixed w-full h-[80px] sm:h-[110px] flex justify-between items-center bg-[#000034] gradient-bg-welcome'>
+    <div className='fixed w-full h-[80px] sm:h-[110px] flex justify-between items-center bg-[#3c4564]'>
       <div className='pl-20'>  
         <img src={logo}  alt='logo' className='w-[100px] sm:w-[130px]'/>
       </div>
           <div className='hidden lg:flex justify-evenly gap-20 pr-12'>
-          <Link to="/" className='text-[#D8A31A] '> Home</Link>
-          <Link to="/news" className='text-[#D8A31A] '> News</Link>
-          <Link to="/currencies" className='text-[#D8A31A] '>Currencies</Link>
-          <Link to="/exchanges" className='text-[#D8A31A] '>Exchanges</Link>
+          <Link to="/" className='text-[#FFFF] '> Home</Link>
+          <Link to="/news" className='text-[#FFFF] '> News</Link>
+          <Link to="/currencies" className='text-[#FFFF] '>Currencies</Link>
           </div>
 
           <div onClick={handleClick} className= 'lg:hidden z-10 pr-40'>
             {!nav ? <FaBars color='#FFFFFF' /> : <FaTimes color='#FFFFFF'/>}
+            </div>
+
+            <div className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen bg-[#000034] text-2xl gap-24 flex flex-col items-center justify-center'}>
+          <Link onClick={handleClick} to="/" className='text-[#D8A31A] '> Home</Link>
+          <Link onClick={handleClick} to="/news" className='text-[#D8A31A] '> News</Link>
+          <Link onClick={handleClick} to="/currencies" className='text-[#D8A31A] '>Currencies</Link>
           </div>
+          
 
 
         </div>

@@ -31,7 +31,7 @@ const News = ({simplified}) => {
       {cryptoNews?.value.map((news, i) => (
         <div className=' sm:p-4 '>
           <a href={news.url} target='_blank' rel='noreferrer'>
-            <div className='p-4 border-2 rounded-md shadow-md bg-[#FFFFFF]'> 
+            <div className='p-4 border-2 rounded-md shadow-md bg-[#FFFFFF] hover:bg-[#d6d8da]'> 
             <div className='flex flex-row'>
               <h1 className='sm:text-2xl w-full pb-3 font-bold flex'>{news.name} </h1>
                 <span className=''> <img src= {news?.image?.thumbnail?.contentUrl} alt="news image" /> </span>

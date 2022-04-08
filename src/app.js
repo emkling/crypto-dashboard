@@ -6,17 +6,13 @@ import {Home, Exchanges, Details, Currencies, Navbar, News} from './components'
 
 const App = () => {
   return (
-    <div className='w-full bg-[#dcdcdc]'>
+    <div className='w-full bg-[#eef0f3]'>
 
         <Navbar />
         <div>
         <Switch>
                 <Route exact path="/">
                   <Home />
-                </Route>
-
-                <Route exact path="/exchanges">
-                  <Exchanges />
                 </Route>
 
                 <Route exact path="/news">
