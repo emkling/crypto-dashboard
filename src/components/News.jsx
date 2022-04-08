@@ -6,7 +6,7 @@ import moment from 'moment';
 
 const News = ({simplified}) => {
   const [newsCategory, setNewsCategory] = useState('Cryptocurrency');
-  const {data: cryptoNews } = useGetCryptoNewsQuery({newsCategory, count : simplified ? 12 : 50 });
+  const {data: cryptoNews } = useGetCryptoNewsQuery({newsCategory, count : simplified ? 12 : 30 });
   const {data} = useGetCryptosQuery(50);
 
   if(!cryptoNews?.value) return "Loading"
@@ -14,9 +14,9 @@ const News = ({simplified}) => {
   return (
     <>
     {!simplified && (
-    <div className='pt-[150px] flex justify-center'>
+    <div className='pt-[150px] flex justify-center pb-4'>
       <select
-      className='w-[200px]'
+      className='w-[200px] h-8'
       placeholder='Select Crypto'
       onChange={(value) => setNewsCategory(value)}
       >
@@ -26,23 +26,24 @@ const News = ({simplified}) => {
       </select>
     </div> 
     )}
-    <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-10 p-4 w-full '>
+    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-10 p-4 w-full '>
       {cryptoNews?.value.map((news, i) => (
-        <div className=' sm:p-4 border-2 rounded-md shadow-md bg-[#FFFFFF]'>
+        <div className=' sm:p-4 '>
           <a href={news.url} target='_blank' rel='noreferrer'>
-            <div className='p-4'> 
+            <div className='p-4 border-2 rounded-md shadow-md bg-[#FFFFFF]'> 
             <div className='flex flex-row'>
-              <h1 className='text-2xl w-full pb-3 font-bold flex'>{news.name} </h1>
+              <h1 className='sm:text-2xl w-full pb-3 font-bold flex'>{news.name} </h1>
                 <span className=''> <img src= {news?.image?.thumbnail?.contentUrl} alt="news image" /> </span>
               </div>
               <p className='p-2'>{news.description.length > 300 ? `${news.description.substring(0,300)}....` : news.description}</p>
-            </div>
+           
             <div className='flex gap-6 justify-center'>
               <p className=''>{news.provider[0]?.name}</p>
-              <img className='w-10 inline-flex items-center' src={news.provider[0]?.image?.thumbnail?.contentUrl} />
+              <img className='w-8 sm:w-[14px] inline-flex items-center' src={news.provider[0]?.image?.thumbnail?.contentUrl} />
             </div>
-            <div>
+            <div className='pl-4 pb-4'>
               {moment(news.datePublished).startOf('ss').fromNow()}
+            </div> 
             </div>
           </a>
         </div>

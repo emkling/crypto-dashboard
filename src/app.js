@@ -1,7 +1,8 @@
 import React from 'react'
 import {Switch, Route, Link } from 'react-router-dom'
 
-import {Home,Exchanges, Currencies, Navbar, News} from './components'
+
+import {Home, Exchanges, Details, Currencies, Navbar, News} from './components'
 
 const App = () => {
   return (
@@ -25,10 +26,16 @@ const App = () => {
                 <Route exact path="/currencies">
                   <Currencies/>
                 </Route>
+
+                <Route exact path="/crypto/:coinId">
+                  <Details/>
+               </Route>
           </Switch>
         </div>
-        
-    
+        <div className='h-[80px] w-full bottom-0 bg-[#000034] flex justify-center items-center text-[#FFFFFF] bg-gradient-welcome'>
+          <p> All Rights Reserved </p>
+        </div>
+
     </div>
   )
 }

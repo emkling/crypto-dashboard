@@ -11,12 +11,18 @@ const Currencies = ({simplified}) => {
   const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
     const filteredData = cryptosList?.data?.coins.filter((coin) => coin.name.toLowerCase().includes(searchTerm.toLocaleLowerCase()));
     setCryptos(filteredData)
 
   }, [cryptosList, searchTerm])
   if(isFetching) return "Loading";
   console.log(cryptos);
+
+  
 
   return (
     <div className='w-full flex flex-col'>
@@ -31,7 +37,7 @@ const Currencies = ({simplified}) => {
             <div className='p-4'> 
             <div className='flex flex-row'>
               <h1 className=' w-full pb-3 font-bold flex'>{currency.rank}. {currency.name} </h1>
-                <span className='w-8 sm:w-10 -mt-[10px] '> <img src= {currency.iconUrl} /> </span>
+                <span className='w-8 sm:w-10 -mt-[4px] sm:-mt-[10px] '> <img src= {currency.iconUrl} /> </span>
               </div>
               <p className='p-2'>Price: {millify(currency.price)}</p>
               <p className='p-2'>Daily Change: {millify(currency.change)}%</p>

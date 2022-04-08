@@ -1,21 +1,33 @@
 import React from 'react'
 import logo from '../assets/logo.png'
 import {Link}from 'react-router-dom'
+import {FaBars, FaTimes} from 'react-icons/fa';
+import { useState } from 'react';
 
 const Navbar = () => {
+  const [nav, setNav] = useState(false);
+  const handleClick = () => setNav(!nav);
+
+
   return (
-    <div className='fixed w-full h-[110px] flex justify-center bg-[#000034]'>
-        
-        <div className='flex relative justify-center items-center gap-32 w-full'>
-            
-            <Link to="/" className='text-[#D8A31A] text-2xl'> Home</Link>
-            <Link to="/news" className='text-[#D8A31A] text-2xl'> News</Link>
-            <img src={logo}  alt='logo' style={{width:'130px'}} />
-            <Link to="/currencies" className='text-[#D8A31A] text-2xl'> Currencies</Link>
-            <Link to="/exchanges" className='text-[#D8A31A] text-2xl'> Exchanges</Link>
+    <div className='fixed w-full h-[80px] sm:h-[110px] flex justify-between items-center bg-[#000034] gradient-bg-welcome'>
+      <div className='pl-20'>  
+        <img src={logo}  alt='logo' className='w-[100px] sm:w-[130px]'/>
+      </div>
+          <div className='hidden lg:flex justify-evenly gap-20 pr-12'>
+          <Link to="/" className='text-[#D8A31A] text-xl'> Home</Link>
+          <Link to="/news" className='text-[#D8A31A] text-xl'> News</Link>
+          <Link to="/currencies" className='text-[#D8A31A] text-xl'>Currencies</Link>
+          <Link to="/exchanges" className='text-[#D8A31A] text-xl'>Exchanges</Link>
+          </div>
+
+          <div onClick={handleClick} className= 'lg:hidden z-10 pr-40'>
+            {!nav ? <FaBars color='#FFFFFF' /> : <FaTimes color='#FFFFFF'/>}
+          </div>
+
+
         </div>
 
-    </div>
   )
 }
 
