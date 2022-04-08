@@ -1,19 +1,28 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto'
-import { Chart }            from 'react-chartjs-2'
+import { Chart } from 'react-chartjs-2'
 
 const LineChart = ({ coinHistory, currentPrice, coinName }) => {
   const coinPrice = [];
   const coinTimestamp = [];
 
-  for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
+
+
+const len = coinHistory?.data?.history?.length;
+  const yLen = coinHistory?.data?.history?.length;
+  for (let i = len-1; i > 0; i--) {
     coinPrice.push(coinHistory?.data?.history[i].price);
   }
-
-  for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
-    coinTimestamp.push(new Date(coinHistory?.data?.history[i].timestamp).toLocaleDateString());
+  for (let i = yLen-1; i > 0; i--) {
+    coinTimestamp.push(new Date(coinHistory?.data?.history[i].timestamp*1000).toLocaleDateString());
   }
+
+  for (let i = yLen-1; i > 0; i--) {
+      console.log(new Date(coinHistory?.data?.history[i].timestamp*1000));
+  }
+
+
   const data = {
     labels: coinTimestamp,
     datasets: [

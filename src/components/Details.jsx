@@ -11,7 +11,7 @@ import HTMLReactParser from 'html-react-parser';
 const Details = () => {
 
     const {coinId} = useParams();
-    const [timePeriod, setTimePeriod] = useState('5y');
+    const [timePeriod, setTimePeriod] = useState('24h');
     const {data, isFetching} = useGetCryptoDetailsQuery(coinId);
     const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timePeriod });
     const cryptoDetails = data?.data?.coin;
@@ -53,7 +53,7 @@ const Details = () => {
         </section> 
         
         <section>
-          <select defaultValue={timePeriod} placeholder="Select period" onChange={(value) => setTimePeriod(value)}>
+          <select defaultValue={timePeriod} placeholder="Select period" onChange={(e) => setTimePeriod(e.target.value)}>
             {time.map((date) => <option value={date} key={date}> {date} </option>)}
 
 
