@@ -7,7 +7,6 @@ import {useEffect} from 'react'
 import LineChart from './LineChart'
 import HTMLReactParser from 'html-react-parser';
 
-
 const Details = () => {
 
     const {coinId} = useParams();
@@ -100,7 +99,6 @@ const Details = () => {
           <p></p> 
         </section>
         </div>
-        
           <div className="bg-[#eef0f3]">
           <section>
             <h1>What is {cryptoDetails?.name}</h1>

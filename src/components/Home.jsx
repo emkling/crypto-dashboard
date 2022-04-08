@@ -5,14 +5,14 @@ import {Currencies, News} from '../components'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import LineChart from './LineChart'
-
+import background from '../assets/Crypto.png'
 
 const Home = () => {
   const[count, setCount] = useState(10)
   const [coinId, setCoinId] = useState('Qwsogvtv82FCd');
   const {data, isFetching} = useGetCryptosQuery(count);
   const globalStats = data?.data?.stats;
-  
+
   const [timePeriod, setTimePeriod] = useState('3h');
   const {data: two, isFetching2} = useGetCryptoDetailsQuery(coinId);
   const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timePeriod });
@@ -48,10 +48,10 @@ const Home = () => {
         <div className='p-2 sm:p-4 border-2 shadow-lg rounded-lg bg-white'> 24hr Volume:  {millify(globalStats.total24hVolume)}  </div> 
         <div className='p-2 sm:p-4 border-2 shadow-lg rounded-lg bg-white'> Market:  {millify(globalStats.totalMarkets)} </div>
        
-      </div>
+        </div>
           <div className='w-full flex flex-col bg-white p-12 pr-10'>
             <div className='flex flex-row gap-10'> 
-          <select className='w-[70px]' defaultValue={timePeriod} placeholder="Select period" onChange={(e) => setTimePeriod(e.target.value)}>
+            <select className='w-[70px]' defaultValue={timePeriod} placeholder="Select period" onChange={(e) => setTimePeriod(e.target.value)}>
             {time.map((date) => <option value={date} key={date}> {date} </option>)}
           </select>
 
@@ -67,11 +67,6 @@ const Home = () => {
           <LineChart coinHistory={coinHistory} currentPrice={millify(cryptoDetails?.price)} coinName={cryptoDetails?.name} />
         </div>
 
-      
-
-      
-      
-      
     </div>
   )
 }
