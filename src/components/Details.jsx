@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom'
 import millify from 'millify'
 import { useGetCryptoDetailsQuery } from '../services/cryptoApi'
 import {useEffect} from 'react'
-
+import LineChart from './LineChart'
 
 
 
