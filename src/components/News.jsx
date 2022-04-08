@@ -26,7 +26,7 @@ const News = ({simplified}) => {
       </select>
     </div> 
     )}
-    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-10 p-4 w-full '>
+    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 p-4 w-full '>
       {cryptoNews?.value.map((news, i) => (
         <div className=' sm:p-4 '>
           <a href={news.url} target='_blank' rel='noreferrer'>
@@ -37,12 +37,8 @@ const News = ({simplified}) => {
               </div>
               <p className='p-2'>{news.description.length > 300 ? `${news.description.substring(0,300)}....` : news.description}</p>
            
-            <div className='flex gap-6 justify-center'>
-              <p className=''>{news.provider[0]?.name}</p>
-              <img className='w-8 sm:w-[14px] inline-flex items-center' src={news.provider[0]?.image?.thumbnail?.contentUrl} />
-            </div>
-            <div className='pl-4 pb-4'>
-              {moment(news.datePublished).startOf('ss').fromNow()}
+            <div className='pl-4 pr-4 py-4 flex justify-between'>
+               <span className=''>{news.provider[0]?.name}</span> <span>{moment(news.datePublished).startOf('ss').fromNow()} </span>
             </div> 
             </div>
           </a>

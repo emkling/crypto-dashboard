@@ -22,12 +22,12 @@ const Home = () => {
 
       <div className='flex justify-between w-full pb-4 pt-10'>
         <h1 className='font-bold text-2xl sm:text-4xl pl-12  text-[#000034]'> News</h1>
-        <Link className='inline-flex sm:text-2xl pr-12 items-center ' to='/news'> Show More</Link>
+        <Link className='inline-flex pr-12 items-center ' to='/news'> Show More</Link>
       </div>
       <News simplified />
       <div className='flex justify-between w-full pb-4 pt-10'>
         <h1 className='font-bold text-2xl sm:text-4xl pl-12 text-[#000034]'>Top Currencies</h1>
-        <Link className='inline-flex sm:text-2xl items-center pr-12 top-1/2' to='/currencies'> Show More</Link>
+        <Link className='inline-flex  items-center pr-12 top-1/2' to='/currencies'> Show More</Link>
       </div>
       <Currencies simplified={true}/> 
 

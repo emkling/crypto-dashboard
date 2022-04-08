@@ -15,10 +15,10 @@ const Navbar = () => {
         <img src={logo}  alt='logo' className='w-[100px] sm:w-[130px]'/>
       </div>
           <div className='hidden lg:flex justify-evenly gap-20 pr-12'>
-          <Link to="/" className='text-[#D8A31A] text-xl'> Home</Link>
-          <Link to="/news" className='text-[#D8A31A] text-xl'> News</Link>
-          <Link to="/currencies" className='text-[#D8A31A] text-xl'>Currencies</Link>
-          <Link to="/exchanges" className='text-[#D8A31A] text-xl'>Exchanges</Link>
+          <Link to="/" className='text-[#D8A31A] '> Home</Link>
+          <Link to="/news" className='text-[#D8A31A] '> News</Link>
+          <Link to="/currencies" className='text-[#D8A31A] '>Currencies</Link>
+          <Link to="/exchanges" className='text-[#D8A31A] '>Exchanges</Link>
           </div>
 
           <div onClick={handleClick} className= 'lg:hidden z-10 pr-40'>
