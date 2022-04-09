@@ -22,7 +22,7 @@ const News = ({simplified}) => {
     {!simplified && (
     <div className='pt-[80px] sm:pt-[150px] flex justify-center pb-4'>
       <select
-      className='w-[200px] h-8 bg-[#FFFFFF] rounded-lg'
+      className='w-[200px] h-8 bg-[#FFFFFF] rounded-lg border-2 '
       placeholder='Select Crypto'
       onChange={(e) => setNewsCategory(e.target.value)
       

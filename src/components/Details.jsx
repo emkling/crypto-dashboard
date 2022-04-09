@@ -41,17 +41,17 @@ const Details = () => {
     <div className='pt-[150px] w-full h-screen flex flex-col '>
        <div className='flex flex-col'>
         <section className='flex justify-center items-center'>
-          <h1 className='text-4xl'>{cryptoDetails?.name} ({cryptoDetails?.symbol})</h1>
+          <h1 className='text-4xl text-[#3c4564]'>{cryptoDetails?.name} ({cryptoDetails?.symbol})</h1>
         </section> 
         
         <section className='p-12 pr-10'>
         <div className='flex flex-row gap-10'> 
-          <select className='w-[70px]' defaultValue={timePeriod} placeholder="Select period" onChange={(e) => setTimePeriod(e.target.value)}>
+          <select className='w-[70px] border-2 rounded-lg' defaultValue={timePeriod} placeholder="Select period" onChange={(e) => setTimePeriod(e.target.value)}>
             {time.map((date) => <option value={date} key={date}> {date} </option>)}
           </select>
 
           <select
-          className=' w-[100px] lg:w-[175px] h-8'
+          className=' w-[100px] lg:w-[175px] h-8 border-2 rounded-lg'
           placeholder='Select Crypto'
           onChange={(e) => setCoinUUID(e.target.value)}>
 

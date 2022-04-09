@@ -48,7 +48,7 @@ const len = coinHistory?.data?.history?.length;
   return (
     <>
       <div className="w-full flex flex-col justify-end items-center">
-        <div className="font-bold text-xl">{coinName} Price Chart </div>
+        <div className="font-bold text-xl text-[#3c4564]">{coinName} Price Chart </div>
     
           <div className="">Change: {coinHistory?.data?.change}% <br/> </div>
           <div  className="">Current {coinName} Price: $ {currentPrice} <br/> </div>

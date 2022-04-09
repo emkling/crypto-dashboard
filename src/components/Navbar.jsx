@@ -6,6 +6,7 @@ import { useState } from 'react';
 import {BsCurrencyExchange} from 'react-icons/bs'
 import {AiTwotoneHome} from 'react-icons/ai'
 import {FaNewspaper} from 'react-icons/fa'
+import {FaWallet} from 'react-icons/fa'
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -18,9 +19,10 @@ const Navbar = () => {
         <img src={Crypto}  alt='logo' className='w-[140px] sm:w-[170px]'/>
       </div>
           <div className='hidden lg:flex justify-evenly gap-20 pr-12'>
-          <Link to="/" className='text-[#FFFF]'><AiTwotoneHome className='inline-flex' /> Home</Link>
-          <Link to="/news" className='text-[#FFFF] '> <FaNewspaper className='inline-flex' /> News</Link>
-          <Link to="/currencies" className='text-[#FFFF] '> <BsCurrencyExchange className='inline-flex' /> Currencies</Link>
+          <Link to="/" className='text-[#FFFF]'><AiTwotoneHome className='inline-flex -mt-[5px]' /> Home</Link>
+          <Link to="/currencies" className='text-[#FFFF] '> <FaWallet className='inline-flex -mt-[5px]' /> Wallet</Link>
+          <Link to="/news" className='text-[#FFFF] '> <FaNewspaper className='inline-flex -mt-[3px]' /> News</Link>
+          <Link to="/currencies" className='text-[#FFFF] '> <BsCurrencyExchange className='inline-flex -mt-[5px]' /> Currencies</Link>
           </div>
 
           <div onClick={handleClick} className= 'lg:hidden z-10 pr-40'>

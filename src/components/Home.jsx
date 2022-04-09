@@ -51,12 +51,12 @@ const Home = () => {
         </div>
           <div className='w-full flex flex-col bg-white p-12 pr-10'>
             <div className='flex flex-row gap-10'> 
-            <select className='w-[70px]' defaultValue={timePeriod} placeholder="Select period" onChange={(e) => setTimePeriod(e.target.value)}>
+            <select className='border-2 rounded-lg w-[70px]' defaultValue={timePeriod} placeholder="Select period" onChange={(e) => setTimePeriod(e.target.value)}>
             {time.map((date) => <option value={date} key={date}> {date} </option>)}
           </select>
 
           <select
-          className='w-[200px] h-8'
+          className='w-[200px] h-8 border-2 rounded-lg'
           placeholder='Select Crypto'
           onChange={(e) => setCoinId(e.target.value)}>
 
