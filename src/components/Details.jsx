@@ -35,21 +35,6 @@ const Details = () => {
 
     const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
 
-    const stats = [
-        { title: 'Price to USD', value: `$ ${cryptoDetails?.price && millify(cryptoDetails?.price)}` },
-        { title: 'Rank', value: cryptoDetails?.rank},
-        { title: '24h Volume', value: `$ ${cryptoDetails?.volume && millify(cryptoDetails?.volume)}`  },
-        { title: 'Market Cap', value: `$ ${cryptoDetails?.marketCap && millify(cryptoDetails?.marketCap)}`},
-        { title: 'All-time-high(daily avg.)', value: `$ ${cryptoDetails?.allTimeHigh?.price && millify(cryptoDetails?.allTimeHigh?.price)}`},
-      ];
-    
-      const genericStats = [
-        { title: 'Number Of Markets', value: cryptoDetails?.numberOfMarkets, },
-        { title: 'Number Of Exchanges', value: cryptoDetails?.numberOfExchanges,},
-        { title: 'Aprroved Supply', value: cryptoDetails?.supply?.confirmed  },
-        { title: 'Total Supply', value: `$ ${cryptoDetails?.supply?.total && millify(cryptoDetails?.supply?.total)}`},
-        { title: 'Circulating Supply', value: `$ ${cryptoDetails?.supply?.circulating && millify(cryptoDetails?.supply?.circulating)}`},
-      ];
     
 
   return (
@@ -78,7 +63,7 @@ const Details = () => {
           
         </section>
         
-         <section className='border-2 rounded-lg p-10'>
+         <section className='border-2 rounded-lg p-24'>
             <h1 className=' font-bold text-[#3c4564] text-2xl pb-4'>What is {cryptoDetails?.name}?</h1>
             <div>
               {HTMLReactParser(cryptoDetails.description)}
@@ -87,7 +72,7 @@ const Details = () => {
 
         <div className='grid grid-cols-1 lg:grid-cols-3 w-full gap-20 p-20 border-2 rounded-lg'>
         <section className=''>
-          <div className='border-2 shadow-lg  rounded-lg p-10 flex flex-col'>
+          <div className='border-2 shadow-lg  rounded-lg p-4 sm:p-10 flex flex-col'>
             <h1 className='font-bold text-2xl text-[#3c4564] pb-6 '> Value Statistics </h1>
             <p className='pb-6'>Price to USD: ${millify(cryptoDetails?.price)}</p> 
             <p className='pb-6'>Rank: #{cryptoDetails?.rank} </p>
@@ -100,7 +85,7 @@ const Details = () => {
         
 
         <section className=''>
-          <div className='border-2 shadow-lg  rounded-lg p-10 flex flex-col'>
+          <div className='border-2 shadow-lg  rounded-lg p-4 sm:p-10 flex flex-col'>
           <h1 className='font-bold text-2xl text-[#3c4564] pb-6 '> Other Statistics </h1>
           <p className='pb-6'>Number of Markets: {cryptoDetails?.numberOfMarkets}</p>
           <p className='pb-6'>Number of Exchanges: {cryptoDetails?.numberOfExchanges}</p>
@@ -110,7 +95,7 @@ const Details = () => {
           </div>
     
         </section>
-        <section className='border-2 shadow-lg rounded-lg p-10'>
+        <section className='border-2 shadow-lg rounded-lg p-4 sm:p-10'>
           <div className='flex flex-col'>
           <h1 className=' font-bold text-[#3c4564] text-2xl pb-2'> Links </h1>
             {cryptoDetails?.links?.map((link) => ( 
@@ -120,7 +105,7 @@ const Details = () => {
                 <a className='' href={link.url} target="_blank" rel="noreferrer"> {link.name} </a>
                 </div>
               </div>
-            ))};  </div>
+            ))}  </div>
           </section>
         </div>
           <div className="bg-[#eef0f3] flex flex-row">

@@ -7,7 +7,6 @@ import {Home, Exchanges, Details, Currencies, Navbar, News} from './components'
 const App = () => {
   return (
     <div className='w-full '>
-
         <Navbar />
         <div>
         <Switch>
