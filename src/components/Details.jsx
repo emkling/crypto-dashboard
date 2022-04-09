@@ -66,7 +66,7 @@ const Details = () => {
           </select>
 
           <select
-          className='w-[200px] h-8'
+          className=' w-[100px] lg:w-[175px] h-8'
           placeholder='Select Crypto'
           onChange={(e) => setCoinUUID(e.target.value)}>
 
@@ -77,48 +77,56 @@ const Details = () => {
         <LineChart coinHistory={coinHistory} currentPrice={millify(cryptoDetails?.price)} coinName={cryptoDetails?.name} />
           
         </section>
-
-        <div className='flex justify-between w-full gap-20 p-20 border-2 rounded-lg '>
-        <section className='flex flex-col gap-4 ] border-2 rounded-lg p-10'>
-          <h1 className='font-bold text-xl'> </h1>
-          <p>Price to USD: {millify(cryptoDetails?.price)}</p> 
-          <p>Rank: {cryptoDetails?.rank} </p>
-          <p>24h Volume: {cryptoDetails?.volume}</p>
-          <p>Market Cap: {millify(cryptoDetails?.marketCap)}</p>
-          <p>All Time High: {millify(cryptoDetails?.allTimeHigh?.price)}</p>
-          <p>Change: {cryptoDetails?.change}</p>
-        </section>
-       
-
-        <section className=' border-2 rounded-lg p-10'>
-          <p>Number of Markets: {cryptoDetails?.numberOfMarkets}</p>
-          <p>Number of Exchanges: {cryptoDetails?.numberOfExchanges}</p>
-          <p>Total Supply: {cryptoDetails?.supply?.total}</p>
-          <p>Circulating Supply {millify(cryptoDetails?.supply?.circulating)}</p>
-          <p>Approved Supply: {cryptoDetails?.supply?.confirmed} </p>
-          <p></p> 
-        </section>
-        </div>
-          <div className="bg-[#eef0f3]">
-          <section>
-            <h1>What is {cryptoDetails?.name}</h1>
+        
+         <section className='border-2 rounded-lg p-10'>
+            <h1 className=' font-bold text-[#3c4564] text-2xl pb-4'>What is {cryptoDetails?.name}?</h1>
             <div>
               {HTMLReactParser(cryptoDetails.description)}
             </div>
           </section>
 
-          <section>
-            {cryptoDetails?.links?.map((link) => ( 
+        <div className='grid grid-cols-1 lg:grid-cols-3 w-full gap-20 p-20 border-2 rounded-lg'>
+        <section className=''>
+          <div className='border-2 shadow-lg  rounded-lg p-10 flex flex-col'>
+            <h1 className='font-bold text-2xl text-[#3c4564] pb-6 '> Value Statistics </h1>
+            <p className='pb-6'>Price to USD: ${millify(cryptoDetails?.price)}</p> 
+            <p className='pb-6'>Rank: #{cryptoDetails?.rank} </p>
+            <p className='pb-6'>24h Volume: {cryptoDetails?.volume}</p>
+            <p className='pb-6'>Market Cap: ${millify(cryptoDetails?.marketCap)}</p>
+            <p className='pb-6'>All Time High: ${millify(cryptoDetails?.allTimeHigh?.price)}</p>
+            <p className='pb-6'>Change: {cryptoDetails?.change}%</p>
+          </div>
+        </section>
+        
 
-              <div key={link.name} className="py-4">
-                <h1> {link.type}</h1>
+        <section className=''>
+          <div className='border-2 shadow-lg  rounded-lg p-10 flex flex-col'>
+          <h1 className='font-bold text-2xl text-[#3c4564] pb-6 '> Other Statistics </h1>
+          <p className='pb-6'>Number of Markets: {cryptoDetails?.numberOfMarkets}</p>
+          <p className='pb-6'>Number of Exchanges: {cryptoDetails?.numberOfExchanges}</p>
+          <p className='pb-6'>Total Supply: {cryptoDetails?.supply?.total}</p>
+          <p className='pb-6'>Circulating Supply ${millify(cryptoDetails?.supply?.circulating)}</p>
+          <p className='pb-6'>Approved Supply: {cryptoDetails?.supply?.confirmed} </p>
+          </div>
+    
+        </section>
+        <section className='border-2 shadow-lg rounded-lg p-10'>
+          <div className='flex flex-col'>
+          <h1 className=' font-bold text-[#3c4564] text-2xl pb-2'> Links </h1>
+            {cryptoDetails?.links?.map((link) => ( 
+              <div key={link.name} className="py-4 flex flex-row">
+                <h1 className='font-bold'> {link.type}: </h1>
                 <div>
-                <a href={link.url} target="_blank" rel="noreferrer"> {link.name} </a>
-                
+                <a className='' href={link.url} target="_blank" rel="noreferrer"> {link.name} </a>
                 </div>
               </div>
-            ))};
+            ))};  </div>
           </section>
+        </div>
+          <div className="bg-[#eef0f3] flex flex-row">
+         
+
+        
           
           </div>
         </div>
