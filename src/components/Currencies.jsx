@@ -26,7 +26,7 @@ const Currencies = ({simplified}) => {
 
   return (
     <div className='w-full flex flex-col'>
-    {!simplified && ( <div className='w-[250px] m-auto rounded-lg pt-[80px ] sm:pt-[140px]'>
+    {!simplified && ( <div className='w-[250px] m-auto rounded-lg pt-[80px] sm:pt-[140px]'>
         <input className='border-2 rounded-lg' placeholder='Search' onChange={(e) => setSearchTerm(e.target.value)} />
     </div>
     )}

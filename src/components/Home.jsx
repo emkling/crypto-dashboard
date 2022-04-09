@@ -40,13 +40,13 @@ const Home = () => {
       <div className='flex w-full pt-10 '>
         <h1 className='font-bold text-2xl sm:text-4xl pl-10 text-[#000034]'>Global Statistics </h1>
       </div>
-      <div className='flex flex-row pl-12 justify-start items-align py-8 gap-20 pb-10 w-full flex-wrap'> 
+      <div className='grid pl-12 grid-cols-2 lg:grid-cols-5 py-8 gap-12 pb-10 w-full'> 
       
-        <div className='p-2 sm:p-4 border-2 shadow-lg rounded-lg bg-white'> Cryptocurrencies: {globalStats.total} </div> 
-        <div className='p-2 sm:p-4 border-2 shadow-lg rounded-lg bg-white'> Exchanges: {millify(globalStats.totalExchanges)}  </div>
-        <div className='p-2 sm:p-4 border-2 shadow-lg rounded-lg bg-white'> Market Cap:  {millify(globalStats.totalMarketCap)}  </div>
-        <div className='p-2 sm:p-4 border-2 shadow-lg rounded-lg bg-white'> 24hr Volume:  {millify(globalStats.total24hVolume)}  </div> 
-        <div className='p-2 sm:p-4 border-2 shadow-lg rounded-lg bg-white'> Market:  {millify(globalStats.totalMarkets)} </div>
+        <div className='p-2 sm:p-4 border-2 text-center shadow-lg rounded-lg bg-white'> Cryptocurrencies: {globalStats.total} </div> 
+        <div className='p-2 sm:p-4 border-2 text-center shadow-lg rounded-lg bg-white'> Exchanges: {millify(globalStats.totalExchanges)}  </div>
+        <div className='p-2 sm:p-4 border-2 text-center shadow-lg rounded-lg bg-white'> Market Cap:  {millify(globalStats.totalMarketCap)}  </div>
+        <div className='p-2 sm:p-4 border-2 text-center shadow-lg rounded-lg bg-white'> 24hr Volume:  {millify(globalStats.total24hVolume)}  </div> 
+        <div className='p-2 sm:p-4 border-2 text-center shadow-lg rounded-lg bg-white'> Market:  {millify(globalStats.totalMarkets)} </div>
        
         </div>
           <div className='w-full flex flex-col bg-white p-12 pr-10'>

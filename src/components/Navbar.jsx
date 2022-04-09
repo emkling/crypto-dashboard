@@ -13,9 +13,9 @@ const Navbar = () => {
 
 
   return (
-    <div className='fixed w-full h-[60px] sm:h-[90px] flex justify-between items-center bg-[#3c4564]'>
+    <div className='fixed w-full h-[60px] sm:h-[90px] flex gap-10 justify-between items-center bg-[#3c4564]'>
       <div className='pl-20'>  
-        <img src={Crypto}  alt='logo' className='w-[100px] sm:w-[155px]'/>
+        <img src={Crypto}  alt='logo' className='w-[140px] sm:w-[190px]'/>
       </div>
           <div className='hidden lg:flex justify-evenly gap-20 pr-12'>
           <Link to="/" className='text-[#FFFF]'><AiTwotoneHome className='inline-flex' /> Home</Link>

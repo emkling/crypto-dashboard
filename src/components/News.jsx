@@ -6,7 +6,7 @@ import moment from 'moment';
 
 const News = ({simplified}) => {
   const [newsCategory, setNewsCategory] = useState('Cryptocurrency');
-  const {data: cryptoNews } = useGetCryptoNewsQuery({newsCategory, count : simplified ? 12 : 30 });
+  const {data: cryptoNews } = useGetCryptoNewsQuery({newsCategory, count : simplified ? 12 : 50 });
   const {data} = useGetCryptosQuery(50);
 
   useEffect(() => {
