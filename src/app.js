@@ -28,11 +28,7 @@ const App = () => {
                </Route>
           </Switch>
         </div>
-        <div className='w-full flex absoluteleft-0 bottom-0 right-0 justify-center items-align text-white bg-[#3c4564]'>
-          <p>All Rights Reserved </p>
-    
-        </div>
-    
+     
     </div>
   )
 }
