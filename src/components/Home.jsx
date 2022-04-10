@@ -42,17 +42,17 @@ const Home = () => {
       </div>
       <div className='grid pl-12 grid-cols-2 lg:grid-cols-5 py-8 gap-12 pb-10 w-full'> 
       
-        <div className='p-2 sm:p-4 border-2 text-center shadow-lg rounded-lg bg-white'> Cryptocurrencies: {globalStats.total} </div> 
-        <div className='p-2 sm:p-4 border-2 text-center shadow-lg rounded-lg bg-white'> Exchanges: {millify(globalStats.totalExchanges)}  </div>
-        <div className='p-2 sm:p-4 border-2 text-center shadow-lg rounded-lg bg-white'> Market Cap:  {millify(globalStats.totalMarketCap)}  </div>
-        <div className='p-2 sm:p-4 border-2 text-center shadow-lg rounded-lg bg-white'> 24hr Volume:  {millify(globalStats.total24hVolume)}  </div> 
-        <div className='p-2 sm:p-4 border-2 text-center shadow-lg rounded-lg bg-white'> Market:  {millify(globalStats.totalMarkets)} </div>
+        <div className='p-2 sm:p-4 border-2 text-center shadow-lg rounded-lg bg-white'> Cryptocurrencies: {globalStats?.total} </div> 
+        <div className='p-2 sm:p-4 border-2 text-center shadow-lg rounded-lg bg-white'> Exchanges: {millify(globalStats?.totalExchanges)}  </div>
+        <div className='p-2 sm:p-4 border-2 text-center shadow-lg rounded-lg bg-white'> Market Cap:  {millify(globalStats?.totalMarketCap)}  </div>
+        <div className='p-2 sm:p-4 border-2 text-center shadow-lg rounded-lg bg-white'> 24hr Volume:  {millify(globalStats?.total24hVolume)}  </div> 
+        <div className='p-2 sm:p-4 border-2 text-center shadow-lg rounded-lg bg-white'> Market:  {millify(globalStats?.totalMarkets)} </div>
        
         </div>
           <div className='w-full flex flex-col bg-white p-12 pr-10'>
             <div className='flex flex-row gap-10'> 
             <select className='border-2 rounded-lg w-[70px]' defaultValue={timePeriod} placeholder="Select period" onChange={(e) => setTimePeriod(e.target.value)}>
-            {time.map((date) => <option value={date} key={date}> {date} </option>)}
+            {time?.map((date) => <option value={date} key={date}> {date} </option>)}
           </select>
 
           <select
@@ -64,7 +64,7 @@ const Home = () => {
           {data?.data?.coins?.map((currency) => <option value={currency.uuid}>{currency.name} </option>)}
           </select>
           </div>
-          <LineChart coinHistory={coinHistory} currentPrice={millify(cryptoDetails?.price)} coinName={cryptoDetails?.name} />
+          <LineChart coinHistory={coinHistory} currentPrice={cryptoDetails?.price} coinName={cryptoDetails?.name} />
         </div>
 
     </div>

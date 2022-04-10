@@ -20,7 +20,6 @@ const Navbar = () => {
       </div>
           <div className='hidden lg:flex justify-evenly gap-20 pr-12'>
           <Link to="/" className='text-[#FFFF]'><AiTwotoneHome className='inline-flex -mt-[5px]' /> Home</Link>
-          <Link to="/currencies" className='text-[#FFFF] '> <FaWallet className='inline-flex -mt-[5px]' /> Wallet</Link>
           <Link to="/news" className='text-[#FFFF] '> <FaNewspaper className='inline-flex -mt-[3px]' /> News</Link>
           <Link to="/currencies" className='text-[#FFFF] '> <BsCurrencyExchange className='inline-flex -mt-[5px]' /> Currencies</Link>
           </div>

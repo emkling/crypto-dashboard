@@ -56,7 +56,7 @@ const Details = () => {
           onChange={(e) => setCoinUUID(e.target.value)}>
 
           <option value={cryptoDetails?.name} > {cryptoDetails?.name} </option>
-          {coinList?.data?.coins?.map((currency) => <option value={currency.uuid}>{currency.name} </option>)}
+          {coinList?.data?.coins?.map((currency) => <option value={currency?.uuid}>{currency?.name} </option>)}
           </select>
          </div>
         <LineChart coinHistory={coinHistory} currentPrice={millify(cryptoDetails?.price)} coinName={cryptoDetails?.name} />
@@ -66,7 +66,7 @@ const Details = () => {
          <section className='border-2 rounded-lg p-24'>
             <h1 className=' font-bold text-[#3c4564] text-2xl pb-4'>What is {cryptoDetails?.name}?</h1>
             <div>
-              {HTMLReactParser(cryptoDetails.description)}
+              {HTMLReactParser(cryptoDetails?.description)}
             </div>
           </section>
 
